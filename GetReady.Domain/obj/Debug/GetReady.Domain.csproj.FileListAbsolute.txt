@@ -1,0 +1,5 @@
+D:\Git\GetReady\GetReady.Domain\bin\Debug\GetReady.Domain.dll
+D:\Git\GetReady\GetReady.Domain\bin\Debug\GetReady.Domain.pdb
+D:\Git\GetReady\GetReady.Domain\obj\Debug\GetReady.Domain.csprojResolveAssemblyReference.cache
+D:\Git\GetReady\GetReady.Domain\obj\Debug\GetReady.Domain.dll
+D:\Git\GetReady\GetReady.Domain\obj\Debug\GetReady.Domain.pdb
