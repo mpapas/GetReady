@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GetReady.Client.Mvc.Models;
 
 namespace GetReady.Client.Mvc.Controllers
 {
@@ -25,6 +26,11 @@ namespace GetReady.Client.Mvc.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public PartialViewResult InputForm()
+        {
+            return PartialView("InputForm", new GetReadyInput());
         }
     }
 }
