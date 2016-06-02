@@ -1,0 +1,6 @@
+D:\Git\GetReady\GetReadyConApp\bin\Debug\GetReadyConApp.exe.config
+D:\Git\GetReady\GetReadyConApp\bin\Debug\GetReadyConApp.exe
+D:\Git\GetReady\GetReadyConApp\bin\Debug\GetReadyConApp.pdb
+D:\Git\GetReady\GetReadyConApp\obj\Debug\GetReadyConApp.csprojResolveAssemblyReference.cache
+D:\Git\GetReady\GetReadyConApp\obj\Debug\GetReadyConApp.exe
+D:\Git\GetReady\GetReadyConApp\obj\Debug\GetReadyConApp.pdb

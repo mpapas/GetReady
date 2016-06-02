@@ -1,0 +1,9 @@
+D:\Git\GetReady\GetReady.Tests\bin\Debug\GetReady.Tests.dll
+D:\Git\GetReady\GetReady.Tests\bin\Debug\GetReady.Tests.pdb
+D:\Git\GetReady\GetReady.Tests\bin\Debug\GetReady.Domain.dll
+D:\Git\GetReady\GetReady.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Git\GetReady\GetReady.Tests\bin\Debug\GetReady.Domain.pdb
+D:\Git\GetReady\GetReady.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\Git\GetReady\GetReady.Tests\obj\Debug\GetReady.Tests.csprojResolveAssemblyReference.cache
+D:\Git\GetReady\GetReady.Tests\obj\Debug\GetReady.Tests.dll
+D:\Git\GetReady\GetReady.Tests\obj\Debug\GetReady.Tests.pdb
