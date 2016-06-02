@@ -73,3 +73,5 @@ D:\Git\GetReady\GetReady.Client.Mvc\bin\Microsoft.Owin.Security.MicrosoftAccount
 D:\Git\GetReady\GetReady.Client.Mvc\obj\Debug\GetReady.Client.Mvc.csprojResolveAssemblyReference.cache
 D:\Git\GetReady\GetReady.Client.Mvc\obj\Debug\GetReady.Client.Mvc.dll
 D:\Git\GetReady\GetReady.Client.Mvc\obj\Debug\GetReady.Client.Mvc.pdb
+D:\Git\GetReady\GetReady.Client.Mvc\bin\GetReady.Domain.dll
+D:\Git\GetReady\GetReady.Client.Mvc\bin\GetReady.Domain.pdb
