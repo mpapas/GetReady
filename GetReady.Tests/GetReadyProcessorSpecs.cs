@@ -12,7 +12,7 @@ namespace GetReady.Tests
         public void Successful_Result_For_Input_HOT_8_6_4_2_1_7_No_Commas()
         {
             List<string> args = new List<string>();
-            args.Add("HOT");
+            args.Add("HOT"); 
             args.Add("8");
             args.Add("6");
             args.Add("4");
