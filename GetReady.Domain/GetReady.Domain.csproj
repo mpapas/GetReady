@@ -61,6 +61,7 @@
     <Compile Include="GetReadyProcessor.cs" />
     <Compile Include="GetReadyStrategy.cs" />
     <Compile Include="IGetReady.cs" />
+    <Compile Include="IGetReadyProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemperatureType.cs" />
   </ItemGroup>

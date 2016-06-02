@@ -7,7 +7,7 @@ using GetReady.Domain.Commands;
 
 namespace GetReady.Domain
 {
-    public class GetReadyProcessor
+    public class GetReadyProcessor : IGetReadyProcessor
     {
         public string GetReady(string[] commandStrings)
         {
