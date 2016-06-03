@@ -13,6 +13,10 @@ namespace GetReady.Domain
         private readonly string[] _getReadyCommandStrings;
         private readonly TemperatureType _temperatureType;
 
+        public CommandStringParser(string commandString) : this(new []{commandString})
+        { 
+        }
+
         public CommandStringParser(string[] commandStringArgs)
         {
             if (commandStringArgs == null || commandStringArgs.Length == 0)
@@ -29,6 +33,12 @@ namespace GetReady.Domain
         {
             var temperatureTypeString = _commandStringArgs[0].ToUpper();
 
+            if (temperatureTypeString.Contains(' '))
+            {
+                var parts = temperatureTypeString.Split(' ');
+                temperatureTypeString = parts[0];
+            }
+
             if (temperatureTypeString != "HOT" && temperatureTypeString != "COLD")
                 throw new Exception("First argument must be either 'HOT' or 'COLD'");
 
@@ -40,11 +50,21 @@ namespace GetReady.Domain
         {
             var numericCommands = new List<string>();
 
-            for (int i = 1; i < _commandStringArgs.Length; i++)
-            {
-                var cmds = _commandStringArgs[i].Split(',');
+            string[] arrayToProcess = _commandStringArgs;
 
-                numericCommands.AddRange(cmds.Where(t => !string.IsNullOrWhiteSpace(t)));
+            if (_commandStringArgs.Length == 1)
+            {
+                arrayToProcess = _commandStringArgs[0].Split(' ');
+            }
+
+            if (arrayToProcess.Length > 1)
+            {
+                for (int i = 1; i < arrayToProcess.Length; i++)
+                {
+                    var cmds = arrayToProcess[i].Split(',');
+
+                    numericCommands.AddRange(cmds.Where(t => !string.IsNullOrWhiteSpace(t)));
+                }
             }
 
             return numericCommands.ToArray();

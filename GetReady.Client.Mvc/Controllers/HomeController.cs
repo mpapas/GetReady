@@ -4,33 +4,37 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GetReady.Client.Mvc.Models;
+using GetReady.Domain;
 
 namespace GetReady.Client.Mvc.Controllers
 {
     public class HomeController : Controller
     {
+        private IGetReadyProcessor _processor;
+
+        public HomeController(IGetReadyProcessor processor)
+        {
+            _processor = processor;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return View(new GetReadyViewModel());
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult ProcessGetReadyCommand(GetReadyViewModel inputModel)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                inputModel.OutputResult = _processor.GetReady(inputModel.InputCommandString);
+                return View("index", inputModel);
+            }
+            else
+            {
+                return View("Index");
+            }
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public PartialViewResult InputForm()
-        {
-            return PartialView("InputForm", new GetReadyInput());
-        }
     }
 }

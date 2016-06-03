@@ -9,6 +9,11 @@ namespace GetReady.Domain
 {
     public class GetReadyProcessor : IGetReadyProcessor
     {
+        public string GetReady(string commandString)
+        {
+            return GetReady(new []{commandString});
+        }
+
         public string GetReady(string[] commandStrings)
         {
             var commandStringParser = new CommandStringParser(commandStrings);

@@ -1,9 +1,0 @@
-﻿@model GetReady.Client.Mvc.Models.GetReadyInput
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    @Html.TextBoxFor(model => model.Input)
-    @Html.ValidationMessageFor(model => model.Input)
-}
