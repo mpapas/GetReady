@@ -10,7 +10,7 @@ namespace GetReady.Client.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private IGetReadyProcessor _processor;
+        private readonly IGetReadyProcessor _processor;
 
         public HomeController(IGetReadyProcessor processor)
         {

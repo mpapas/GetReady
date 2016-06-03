@@ -11,7 +11,7 @@ namespace GetReady.Client.Mvc.Controllers
 {
     public class GetReadyController : ApiController
     {
-        private IGetReadyProcessor _processor;
+        private readonly IGetReadyProcessor _processor;
 
         public GetReadyController(IGetReadyProcessor processor)
         {

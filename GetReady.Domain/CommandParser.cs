@@ -1,61 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GetReady.Domain;
 using GetReady.Domain.Commands;
 
 namespace GetReady.Domain
 {
     public class CommandParser
     {
-        readonly IEnumerable<ICommandFactory> availableCommands;
-        private IGetReady _getReady;
+        public static readonly IEnumerable<ICommandFactory> AvailableCommands = GetAvailableCommands();
 
-        public CommandParser(IEnumerable<ICommandFactory> availableCommands, IGetReady getReady)
+        public static TemperatureType ParseTemperatureType(string[] commandStringArgs)
         {
-            this.availableCommands = availableCommands;
-            _getReady = getReady;
+            var temperatureTypeString = commandStringArgs[0].ToUpper();
+
+            if (temperatureTypeString.Contains(' '))
+            {
+                var parts = temperatureTypeString.Split(' ');
+                temperatureTypeString = parts[0];
+            }
+
+            if (temperatureTypeString != "HOT" && temperatureTypeString != "COLD")
+                throw new Exception("First argument must be either 'HOT' or 'COLD'");
+
+            return (TemperatureType)
+                Enum.Parse(typeof(TemperatureType), temperatureTypeString);
         }
 
-        public static object ConvertToGetDressedRequest(string[] args)
+        public static IEnumerable<ICommand> ParseCommands(string[] commandStringArgs, IGetReady getReady)
         {
-            if (args == null || args.Length == 0)
-                throw new ArgumentException("Args cannot be null or zero length");
+            if (commandStringArgs == null || commandStringArgs.Length == 0)
+                throw new ArgumentException("commandStringArgs argument cannot be null or zero length");
 
+            var sanitizedGetReadyCommandStrings = ParseGetReadyCommandStrings(commandStringArgs);
 
-            var commandNumbers = args[1].Split(',');
-
-            throw new NotImplementedException();
-        }
-
-
-        internal ICommand ParseCommand(string commandString)
-        {
-            var command = FindRequestedCommand(commandString);
-            if (null == command)
-                return new UnrecognizedCommand { Name = commandString };
-
-            return command.CreateCommand(_getReady);
-        }
-
-        internal IEnumerable<ICommand> ParseCommands(string[] commandStrings)
-        {
             List<ICommand> commands = new List<ICommand>();
 
-            for (int i = 0; i < commandStrings.Length; i++)
+            for (int i = 0; i < sanitizedGetReadyCommandStrings.Length; i++)
             {
-                commands.Add(ParseCommand(commandStrings[i]));
+                commands.Add(ParseCommand(sanitizedGetReadyCommandStrings[i], getReady));
             }
 
             return commands;
         }
 
-        ICommandFactory FindRequestedCommand(string commandName)
+        private static ICommand ParseCommand(string commandString, IGetReady getReady)
         {
-            return availableCommands
+            var command = FindRequestedCommand(commandString);
+            if (null == command)
+                return new UnrecognizedCommand { Name = commandString };
+
+            return command.CreateCommand(getReady);
+        }
+
+        private static ICommandFactory FindRequestedCommand(string commandName)
+        {
+            return AvailableCommands
                 .FirstOrDefault(cmd => cmd.CommandName == commandName);
         }
+
+        private static string[] ParseGetReadyCommandStrings(string[] commandStringArgs)
+        {
+            var numericCommands = new List<string>();
+
+            string[] arrayToProcess = commandStringArgs;
+
+            if (commandStringArgs.Length == 1)
+            {
+                arrayToProcess = commandStringArgs[0].Split(' ');
+            }
+
+            if (arrayToProcess.Length > 1)
+            {
+                for (int i = 1; i < arrayToProcess.Length; i++)
+                {
+                    var cmds = arrayToProcess[i].Split(',');
+
+                    numericCommands.AddRange(cmds.Where(t => !string.IsNullOrWhiteSpace(t)));
+                }
+            }
+
+            return numericCommands.ToArray();
+        }
+
+        private static IEnumerable<ICommandFactory> GetAvailableCommands()
+        {
+            return new ICommandFactory[]
+                {
+                    new TakeOffPajamasCommand(),
+                    new PutOnFootwearCommand(),
+                    new PutOnHeadwearCommand(),
+                    new PutOnShirtCommand(),
+                    new PutOnSocksCommand(),
+                    new PutOnJacketCommand(),
+                    new PutOnPantsCommand(),
+                    new LeaveHouseCommand(),
+                };
+        }
+
     }
 }

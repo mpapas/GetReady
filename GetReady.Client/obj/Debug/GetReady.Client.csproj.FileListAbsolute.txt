@@ -1,0 +1,8 @@
+D:\Git\GetReady\GetReady.Client\bin\Debug\GetReady.Client.exe.config
+D:\Git\GetReady\GetReady.Client\bin\Debug\GetReady.Client.exe
+D:\Git\GetReady\GetReady.Client\bin\Debug\GetReady.Client.pdb
+D:\Git\GetReady\GetReady.Client\obj\Debug\GetReady.Client.csprojResolveAssemblyReference.cache
+D:\Git\GetReady\GetReady.Client\obj\Debug\GetReady.Client.exe
+D:\Git\GetReady\GetReady.Client\obj\Debug\GetReady.Client.pdb
+D:\Git\GetReady\GetReady.Client\bin\Debug\GetReady.Domain.dll
+D:\Git\GetReady\GetReady.Client\bin\Debug\GetReady.Domain.pdb

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using GetReady.Domain;
 using GetReady.Domain.Commands;
 
 namespace GetReady.Domain
@@ -16,28 +14,18 @@ namespace GetReady.Domain
 
         public string GetReady(string[] commandStrings)
         {
-            var commandStringParser = new CommandStringParser(commandStrings);
+            var getReady = GetReadyStrategy.Create(CommandParser.ParseTemperatureType(commandStrings));
 
-            IGetReady getReady;
+            var commands = CommandParser.ParseCommands(commandStrings, getReady);
 
-            if (commandStringParser.Temperature == TemperatureType.HOT)
-            {
-                getReady = new GetReadyHotWeatherStrategy();
-            }
-            else
-            {
-                getReady = new GetReadyColdWeatherStrategy();
-            }
+            return ExecuteCommands(commands);
+        }
 
-            var availableCommands = GetAvailableCommands();
-
-            var commandParser = new CommandParser(availableCommands, getReady);
-
-            var commands = commandParser.ParseCommands(commandStringParser.GetReadyCommandStrings);
-
+        private string ExecuteCommands(IEnumerable<ICommand> commandsToExecute)
+        {
             StringBuilder sb = new StringBuilder();
 
-            foreach (var response in commands.Select(command => command.Execute()))
+            foreach (var response in commandsToExecute.Select(command => command.Execute()))
             {
                 sb.Append(response + ", ");
                 if (response == Constants.Fail)
@@ -47,20 +35,6 @@ namespace GetReady.Domain
             return sb.ToString().TrimEnd(',', ' ');
         }
 
-        private IEnumerable<ICommandFactory> GetAvailableCommands()
-        {
-            return new ICommandFactory[]
-                {
-                    new TakeOffPajamasCommand(),
-                    new PutOnFootwearCommand(), 
-                    new PutOnHeadwearCommand(), 
-                    new PutOnShirtCommand(),
-                    new LeaveHouseCommand(),
-                    new PutOnSocksCommand(), 
-                    new PutOnJacketCommand(), 
-                    new PutOnPantsCommand(), 
-                };
-        }
-
+        public IEnumerable<ICommandFactory> AvailableCommands => CommandParser.AvailableCommands;
     }
 }

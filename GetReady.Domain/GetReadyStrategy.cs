@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GetReady.Domain
 {
     public abstract class GetReadyStrategy : IGetReady
     {
         private readonly Dictionary<ClothingType, bool> _wornClothing = new Dictionary<ClothingType, bool>();
-         
+
+        public static IGetReady Create(TemperatureType temperatureType)
+        {
+            return temperatureType == TemperatureType.HOT
+                ? (IGetReady) new GetReadyHotWeatherStrategy()
+                : new GetReadyColdWeatherStrategy();
+        }
+
         protected GetReadyStrategy()
         {
             var values = Enum.GetValues(typeof(ClothingType));
