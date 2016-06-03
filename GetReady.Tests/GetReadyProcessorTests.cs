@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GetReady.Domain;
 
@@ -25,6 +26,35 @@ namespace GetReady.Tests
             var result = getReadyProcessor.GetReady(args.ToArray());
 
             Assert.IsTrue(result == "Removing PJs, shorts, t-shirt, sun visor, sandals, leaving house");
+        }
+
+        [TestMethod]
+        public void Input_HOT_8_6_4_2_1_7_NoCommas_SingleString_ShouldBeSuccessful()
+        {
+            var getReadyProcessor = GetReadyProcessorInstance();
+
+            var result = getReadyProcessor.GetReady("HOT 8 6 4 2 1 7");
+
+            Assert.IsTrue(result == "Removing PJs, shorts, t-shirt, sun visor, sandals, leaving house");
+        }
+
+        [TestMethod]
+        public void Input_HOT_8_6_4_2_1_7_SingleString_ShouldBeSuccessful()
+        {
+            var getReadyProcessor = GetReadyProcessorInstance();
+
+            var result = getReadyProcessor.GetReady("HOT 8, 6, 4, 2, 1, 7");
+
+            Assert.IsTrue(result == "Removing PJs, shorts, t-shirt, sun visor, sandals, leaving house");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Input_HOT8_6_4_2_1_7_ShouldThrowException()
+        {
+            var getReadyProcessor = GetReadyProcessorInstance();
+
+            var result = getReadyProcessor.GetReady("HOT8, 6, 4, 2, 1, 7");
         }
 
         [TestMethod]
@@ -136,6 +166,16 @@ namespace GetReady.Tests
             Assert.IsTrue(result == "fail");
         }
 
+        [TestMethod]
+        public void AvailableCommands_ShouldBeNonNullOrEmpty()
+        {
+            var getReadyProcessor = GetReadyProcessorInstance();
+
+            var availableCommands = getReadyProcessor.AvailableCommands;
+
+            Assert.IsNotNull(availableCommands);
+            Assert.IsTrue(availableCommands.Any());
+        }
 
         private GetReadyProcessor GetReadyProcessorInstance()
         {

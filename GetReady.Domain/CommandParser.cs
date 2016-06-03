@@ -33,14 +33,7 @@ namespace GetReady.Domain
 
             var sanitizedGetReadyCommandStrings = ParseGetReadyCommandStrings(commandStringArgs);
 
-            List<ICommand> commands = new List<ICommand>();
-
-            for (int i = 0; i < sanitizedGetReadyCommandStrings.Length; i++)
-            {
-                commands.Add(ParseCommand(sanitizedGetReadyCommandStrings[i], getReady));
-            }
-
-            return commands;
+            return sanitizedGetReadyCommandStrings.Select(t => ParseCommand(t, getReady)).ToList();
         }
 
         private static ICommand ParseCommand(string commandString, IGetReady getReady)
