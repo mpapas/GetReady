@@ -18,4 +18,4 @@ http://getreadymvc.azurewebsites.net/api/GetReady
 ![Image of Azure Deployment Activity Log](https://github.com/mpapas/GetReady/blob/master/AzureDeployActivityLog.PNG)
 
 ### Testing Using Postman
-
+![Image of Postman](https://github.com/mpapas/GetReady/blob/master/Postman.PNG)
