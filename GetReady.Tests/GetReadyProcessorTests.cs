@@ -166,6 +166,7 @@ namespace GetReady.Tests
             Assert.IsTrue(result == "fail");
         }
 
+        [Ignore]
         [TestMethod]
         public void AvailableCommands_ShouldBeNonNullOrEmpty()
         {
