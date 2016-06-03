@@ -1,4 +1,9 @@
 # GetReady
+Available online at:
+http://getreadymvc.azurewebsites.net/
+
+Web API also available at:
+http://getreadymvc.azurewebsites.net/api/GetReady
 
 ### Class Diagram
 ![Image of Class Diagram](https://github.com/mpapas/GetReady/blob/master/Class%20Diagram.png)
@@ -12,4 +17,5 @@
 ### Unit Tests Automatically Run During Deployment
 ![Image of Azure Deployment Activity Log](https://github.com/mpapas/GetReady/blob/master/AzureDeployActivityLog.PNG)
 
+### Testing Using Postman
 
