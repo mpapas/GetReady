@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetReady.Client.Mvc", "GetR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{368CF9B5-E181-4809-824D-9727B51E9075}"
 	ProjectSection(SolutionItems) = preProject
+		.deployment = .deployment
+		build.bat = build.bat
+		Class Diagram.png = Class Diagram.png
+		Dependencies Graph.png = Dependencies Graph.png
+		deploy-tests.cmd = deploy-tests.cmd
+		deploy.cmd = deploy.cmd
 		readme.md = readme.md
 	EndProjectSection
 EndProject

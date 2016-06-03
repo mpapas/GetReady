@@ -82,6 +82,10 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 IF !ERRORLEVEL! NEQ 0 goto error
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: MCP: Build and run tests
+:: ----------
+
 :: Custom 1. Build test project
 echo Building test project
 "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\GetReady.Tests\GetReady.Tests.csproj"
