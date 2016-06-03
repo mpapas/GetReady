@@ -7,8 +7,6 @@ namespace GetReady.Domain
 {
     public class CommandParser
     {
-        public static readonly IEnumerable<ICommandFactory> AvailableCommands = GetAvailableCommands();
-
         public static TemperatureType ParseTemperatureType(string[] commandStringArgs)
         {
             var temperatureTypeString = commandStringArgs[0].ToUpper();
@@ -74,6 +72,8 @@ namespace GetReady.Domain
 
             return numericCommands.ToArray();
         }
+
+        public static readonly IEnumerable<ICommandFactory> AvailableCommands = GetAvailableCommands();
 
         private static IEnumerable<ICommandFactory> GetAvailableCommands()
         {
